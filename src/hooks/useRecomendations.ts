@@ -18,7 +18,7 @@ export const useRecomendations = ({
     hasNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["diary-records"],
+    queryKey: ["column", page],
     queryFn: ({ pageParam = page }) =>
       getRecommendations({
         page: pageParam as number,

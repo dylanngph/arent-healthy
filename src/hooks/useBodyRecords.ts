@@ -41,7 +41,7 @@ export const useDiaryRecords = ({
     hasNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["diary-records"],
+    queryKey: ["diary-records", page],
     queryFn: ({ pageParam = page }) =>
       getBodyRecordsByDiary({
         page: pageParam as number,
