@@ -1,17 +1,17 @@
 export const NAVIGATION_ITEMS = [
     {
       title: "自分の記録",
-      href: "/my-records",
+      href: "/records",
       icon: "/icons/icon_memo.svg",
     },
     {
       title: "チャレンジ",
-      href: "/challenges",
+      href: "#",
       icon: "/icons/icon_challenge.svg",
     },
     {
       title: "お知らせ",
-      href: "/notifications",
+      href: "#",
       icon: "/icons/icon_info.svg",
       badge: 1,
     },
@@ -36,4 +36,27 @@ export const FOOTER_NAVIGATION = [
     {
         title: 'お問い合わせ'
     }
+]
+
+export const DRAWER_NAVIGATION = [
+  {
+    title: '自分の記録',
+    href: '/records'
+  },
+  {
+    title: '体重グラフ'
+  },
+  {
+    title: '目標'
+  },
+  {
+    title: '選択中のコース'
+  },
+  {
+    title: 'コラム一覧',
+    href: '/recommendations'
+  },
+  {
+    title: '設定'
+  }
 ]

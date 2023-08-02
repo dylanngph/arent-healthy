@@ -6,7 +6,7 @@ import {
   HStack,
   Spinner,
 } from "@chakra-ui/react";
-import useDiary from "@/utils/hooks/useDiary";
+import useDiary from "@/hooks/useDiary";
 import DiaryCard from "./DiaryCard";
 import Categories from "./Categories";
 import PrimaryButton from "@/components/ui/buttons/PrimaryButton";

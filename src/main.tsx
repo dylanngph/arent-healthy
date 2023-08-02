@@ -13,12 +13,16 @@ import QueryProvider from './providers/query-provider.tsx';
 import RootLayout from './components/layout/root.tsx';
 import { ColorModeScript } from '@chakra-ui/react'
 import chakra_theme from './config/theme.ts';
+import Records from './pages/records/index.tsx';
+import Recommendations from './pages/recommendations/index.tsx';
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RootLayout />}>
       <Route path='/' element={<App/>} />
+      <Route path='/records' element={<Records/>} />
+      <Route path='/recommendations' element={<Recommendations/>} />
     </Route>
   )
 );

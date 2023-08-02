@@ -9,11 +9,83 @@ import {
   useBreakpointValue,
   IconButton,
   Text,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  StackDivider,
+  useDisclosure,
 } from "@chakra-ui/react";
 import NotificationBadge from "../ui/badges/NotificationBadge";
-import { NAVIGATION_ITEMS } from "@/config/navigation";
+import { DRAWER_NAVIGATION, NAVIGATION_ITEMS } from "@/config/navigation";
+import { NavLink } from "react-router-dom";
 
+const MenuDrawer = () => {
+  const { isOpen, onToggle, onClose } = useDisclosure();
 
+  return (
+    <Popover placement="bottom-end" isOpen={isOpen} onClose={onClose}>
+      <PopoverTrigger>
+        <IconButton
+          variant="ghost"
+          aria-label="Menu"
+          icon={
+            isOpen ? (
+              <img src="/icons/icon_close.svg" alt="menu" />
+            ) : (
+              <img src="/icons/icon_menu.svg" alt="menu" />
+            )
+          }
+          ml="16px"
+          onClick={onToggle}
+        />
+      </PopoverTrigger>
+      <PopoverContent borderRadius={0} color="white" maxW="280px">
+        <PopoverBody p={0}>
+          <Stack
+            divider={
+              <StackDivider
+                borderColor="#2E2E2E"
+                opacity=".25"
+                mt="0!important"
+                mb="0!important"
+              />
+            }
+          >
+            {DRAWER_NAVIGATION.map((item) => {
+              return (
+                <Button
+                  key={item.title}
+                  as={NavLink}
+                  variant="ghost"
+                  w="100%"
+                  justifyContent="flex-start"
+                  px="32px"
+                  py="23px"
+                  fontSize={18}
+                  borderRadius={0}
+                  h="fit-content"
+                  borderTop="1px solid"
+                  borderColor="#ffffff26"
+                  to={item.href}
+                  sx={{
+                    ":first-of-type": {
+                      borderTop: "none",
+                    },
+                  }}
+                >
+                  <Text fontFamily="inherit" fontWeight={300}>
+                    {item.title}
+                  </Text>
+                </Button>
+              );
+            })}
+          </Stack>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
+};
 
 const HeaderContainer = ({
   children,
@@ -51,51 +123,49 @@ const Header = () => {
           justifyContent="space-between"
           h="full"
         >
-          <Box width="109px" height="40px">
+          <Box as={NavLink} to='/' width="109px" height="40px">
             <img src="/logo.svg" alt="" />
           </Box>
           <HStack spacing={0}>
             {NAVIGATION_ITEMS.map((item) => {
               return (
-                <Box
-                  key={item.title}
-                  as={isMobile ? IconButton : Button}
-                  variant="ghost"
-                  w={["auto", "160px"]}
-                >
-                  <HStack>
-                    {item.badge ? (
-                      <Box
-                        position="relative"
-                        bgImage={`url("${item.icon}")`}
-                        bgRepeat="no-repeat"
-                        backgroundSize="contain"
-                        w="32px"
-                        h="32px"
-                      >
-                        <NotificationBadge top={0} right="13px">
-                          {item.badge}
-                        </NotificationBadge>
-                      </Box>
-                    ) : (
-                      <img
-                        src={item.icon}
-                        alt={item.title}
-                        width={32}
-                        height={32}
-                      />
-                    )}
-                    <Text fontFamily="inherit" fontWeight={300}>{!isMobile && item.title}</Text>
-                  </HStack>
-                </Box>
+                <NavLink key={item.title} to={item.href}>
+                  <Box
+                    as={isMobile ? IconButton : Button}
+                    variant="ghost"
+                    w={["auto", "160px"]}
+                  >
+                    <HStack>
+                      {item.badge ? (
+                        <Box
+                          position="relative"
+                          bgImage={`url("${item.icon}")`}
+                          bgRepeat="no-repeat"
+                          backgroundSize="contain"
+                          w="32px"
+                          h="32px"
+                        >
+                          <NotificationBadge top={0} right="13px">
+                            {item.badge}
+                          </NotificationBadge>
+                        </Box>
+                      ) : (
+                        <img
+                          src={item.icon}
+                          alt={item.title}
+                          width={32}
+                          height={32}
+                        />
+                      )}
+                      <Text fontFamily="inherit" fontWeight={300}>
+                        {!isMobile && item.title}
+                      </Text>
+                    </HStack>
+                  </Box>
+                </NavLink>
               );
             })}
-            <IconButton
-              variant="ghost"
-              aria-label="Menu"
-              icon={<img src="/icons/icon_menu.svg" alt="menu" />}
-              ml='16px'
-            /> 
+            <MenuDrawer />
           </HStack>
         </Stack>
       </Container>
