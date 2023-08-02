@@ -31,7 +31,7 @@ const Categories = ({
       key: "dinner",
     },
     {
-      label: "Snacks",
+      label: "Snack",
       icon: "/icons/snack-icon.svg",
       key: "snacks",
     },

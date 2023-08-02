@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter } from "@/utils/format";
 import {
   Text,
   Image,
@@ -18,7 +19,7 @@ const DiaryCard = ({ image, date, category }: { image: string, date: string, cat
           />
         <Box position='absolute' bottom={0} left={0} bg='primary.300' p='7px 10px'>
           <Text color='white' fontSize={15}>
-              {date} {category}
+              {date} {capitalizeFirstLetter(category)}
           </Text>
         </Box>
       </Box>
