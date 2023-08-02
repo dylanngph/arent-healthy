@@ -22,7 +22,7 @@ const ScrollTopButton = () => {
   return (
     <Box position="relative">
       <Fade  in={showTopBtn}>
-        <StyledBox onClick={goToTop}>
+        <StyledBox onClick={goToTop} bottom={{base: '40px', lg: '40%'}}>
           <img src="/icons/component_scroll.svg" />
         </StyledBox>
       </Fade>
@@ -32,7 +32,6 @@ const ScrollTopButton = () => {
 
 const StyledBox = styled(Box)`
   position: fixed;
-  bottom: 40%;
   right: 25px;
   z-index: 20;
   cursor: pointer;
